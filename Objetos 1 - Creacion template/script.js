@@ -1,6 +1,15 @@
 function Carro(marca, modelo, anio, color) {
-
+    this.marca = marca;
+    this.modelo = modelo;
+    this.anio = anio;
+    this.color = color;
 }
+
+/*
+let miCarro = new Carro("Ford", "Mustang", 2022, "Rojo"); //usamos new para crear un nuevo objeto de la clase Carro
+
+console.log(miCarro); 
+*/
 
 let listaCarros = [];
 
@@ -15,7 +24,9 @@ function renderCarList() {
         return;
     }
     
+    //forEach se usa para iterar sobre cada elemento de la listaCarros, toma cada elemento y su índice
     listaCarros.forEach((carro, index) => {
+        console.log(carro);
         const carCard = document.createElement('div');
         carCard.className = 'car-card';
         
@@ -40,13 +51,33 @@ function renderCarList() {
 }
 
 function agregarCarro(event) {
-    
+    event.preventDefault();
+
+    const marca = document.getElementById('marca').value; //.value obtiene el valor del input
+    const modelo = document.getElementById('modelo').value;
+    const anio = document.getElementById('anio').value;
+    const color = document.getElementById('color').value;
+
+    console.log(marca, modelo, anio, color); //imprimimos los valores en la consola
+
+    const nuevoCarro = new Carro(marca, modelo, anio, color); //creamos un nuevo objeto de la clase Carro
+
+    listaCarros.push(nuevoCarro); 
+
+    renderCarList(); //actualizamos la lista de carros
 }
 
 function eliminarCarro(index) {
-   
+    listaCarros.splice(index)
+    renderCarList(); //actualizamos la lista de carros
 }
 
 form.addEventListener('submit', agregarCarro);
+
+//Estos carros se mostrarán al iniciar la página
+
+listaCarros.push(new Carro('Ford', 'Mustang', 2022, 'Rojo'));
+listaCarros.push(new Carro('Chevrolet', 'Camaro', 2021, 'Azul'));
+listaCarros.push(new Carro('Dodge', 'Charger', 2020, 'Negro'));
 
 renderCarList()
