@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Carros con Cantidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Administrador de Carros</h1>
+        
+        <div class="form-container">
+            <h2>Agregar Nuevo Carro</h2>
+            <form id="carForm">
+                <div class="form-group">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" required>
+                </div>
+                <div class="form-group">
+                    <label for="modelo">Modelo:</label>
+                    <input type="text" id="modelo" required>
+                </div>
+                <div class="form-group">
+                    <label for="anio">Año:</label>
+                    <input type="number" id="anio" min="1900" max="2023" required>
+                </div>
+                <div class="form-group">
+                    <label for="color">Color:</label>
+                    <input type="text" id="color" required>
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" min="1" value="1" required>
+                </div>
+                <button type="submit">Agregar Carro</button>
+            </form>
+        </div>
+
+        <div class="search-container">
+            <div class="search-controls">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar por marca o modelo..."
+              />
+              <button id="searchButton">Buscar</button>
+              <button id="lastAddedButton">Últimos agregados</button>
+              <button id="showAllButton">Mostrar todos</button>
+            </div>
+          </div>
+        
+        <div class="cars-list">
+            <h2>Lista de Carros</h2>
+            <div id="carsContainer"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

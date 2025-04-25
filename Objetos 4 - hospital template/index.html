@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión Hospitalaria</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Gestión Hospitalaria</h1>
+        
+        <!-- Sección de Doctores -->
+        <div class="section">
+            <h2>Gestión de Doctores</h2>
+            <div class="form-group">
+                <label for="doctorNombre">Nombre del Doctor:</label>
+                <input type="text" id="doctorNombre" required>
+            </div>
+            <div class="form-group">
+                <label for="doctorEspecialidad">Especialidad:</label>
+                <input type="text" id="doctorEspecialidad" required>
+            </div>
+            <button id="agregarDoctor">Agregar Doctor</button>
+            
+            <h3>Doctores Disponibles</h3>
+            <table id="doctoresTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Especialidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+        <!-- Sección de Pacientes -->
+        <div class="section">
+            <h2>Gestión de Pacientes</h2>
+            <div class="form-group">
+                <label for="pacienteNombre">Nombre del Paciente:</label>
+                <input type="text" id="pacienteNombre" required>
+            </div>
+            <div class="form-group">
+                <label for="pacienteEdad">Edad:</label>
+                <input type="number" id="pacienteEdad" required>
+            </div>
+            <div class="form-group">
+                <label for="pacienteTelefono">Teléfono:</label>
+                <input type="text" id="pacienteTelefono" required>
+            </div>
+            <button id="agregarPaciente">Agregar Paciente</button>
+            
+            <h3>Pacientes Registrados</h3>
+            <table id="pacientesTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+        <!-- Sección de Citas -->
+        <div class="section">
+            <h2>Gestión de Citas</h2>
+            <div class="form-group">
+                <label for="citaPaciente">Paciente:</label>
+                <select id="citaPaciente" required></select>
+            </div>
+            <div class="form-group">
+                <label for="citaDoctor">Doctor:</label>
+                <select id="citaDoctor" required></select>
+            </div>
+            <div class="form-group">
+                <label for="citaFecha">Fecha y Hora:</label>
+                <input type="datetime-local" id="citaFecha" required>
+            </div>
+            <div class="form-group">
+                <label for="citaMotivo">Motivo:</label>
+                <input type="text" id="citaMotivo" required>
+            </div>
+            <button id="agregarCita">Agregar Cita</button>
+            
+            <h3>Citas Programadas</h3>
+            <table id="citasTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Paciente</th>
+                        <th>Doctor</th>
+                        <th>Fecha</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
