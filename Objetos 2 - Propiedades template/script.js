@@ -1,6 +1,19 @@
 
 function Carro(marca, modelo, anio, color, cantidad) {
-    
+    this.marca = marca;
+    this.modelo = modelo;
+    this.anio = anio;
+    this.color = color;
+    this.cantidad = cantidad;
+
+    this.vender = function() {
+        this.cantidad -= 1;
+    }
+
+    this.comprar = function() {
+        this.cantidad += 1;
+    }
+
 }
 
 let listaCarros = [];
@@ -36,9 +49,31 @@ function renderCarList() {
                 <button class="delete-btn" data-index="${index}">Eliminar</button>
             </div>
         `;
-        
         carsContainer.appendChild(carCard);
     });
+
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                eliminarCarro(index);
+            });
+        });
+
+        document.querySelectorAll('.increase-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                listaCarros [index].comprar();
+                renderCarList();
+            });
+        });
+
+        document.querySelectorAll('.decrease-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                listaCarros [index].vender();
+                renderCarList();
+            });
+        });
     
 }
 
