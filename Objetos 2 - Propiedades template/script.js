@@ -4,15 +4,21 @@ function Carro(marca, modelo, anio, color, cantidad) {
     this.modelo = modelo;
     this.anio = anio;
     this.color = color;
-    this.cantidad = cantidad;
+    this.cantidad = cantidad || 1;
 
-    this.vender = function() {
-        this.cantidad -= 1;
-    }
+    this.getInfo = function() {
+        return `${this.marca} ${this.modelo} (${this.anio}) - Color: ${this.color}`;
+    };
 
-    this.comprar = function() {
+    this.aumentarCantidad = function() {
         this.cantidad += 1;
-    }
+    };
+
+    this.disminuirCantidad = function() {
+        if (this.cantidad > 1) {
+            this.cantidad -= 1;
+        }
+    };
 
 }
 
@@ -62,7 +68,7 @@ function renderCarList() {
         document.querySelectorAll('.increase-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
-                listaCarros [index].comprar();
+                listaCarros [index].aumentarCantidad();
                 renderCarList();
             });
         });
@@ -70,7 +76,7 @@ function renderCarList() {
         document.querySelectorAll('.decrease-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
-                listaCarros [index].vender();
+                listaCarros [index].disminuirCantidad();
                 renderCarList();
             });
         });
