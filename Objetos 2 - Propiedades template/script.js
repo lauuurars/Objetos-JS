@@ -1,5 +1,11 @@
 
 function Carro(marca, modelo, anio, color, cantidad) {
+    /*
+    if (marca.length > 20 || marca == "") {
+        throw new error ('La marca no puede estar vacía y debe tener menos de 20 caracteres');
+    }
+    */
+
     this.marca = marca;
     this.modelo = modelo;
     this.anio = anio;
@@ -157,5 +163,6 @@ document.getElementById("searchUltimos").addEventListener(
     }
 
 )
+
 
 renderCarList(listaCarros);
