@@ -27,15 +27,15 @@ let listaCarros = [];
 const form = document.getElementById('carForm');
 const carsContainer = document.getElementById('carsContainer');
 
-function renderCarList() {
+function renderCarList(listaArenderizar) {
     carsContainer.innerHTML = '';
     
-    if (listaCarros.length === 0) {
+    if (listaArenderizar.length === 0) {
         carsContainer.innerHTML = '<p class="no-cars">No hay carros en la lista</p>';
         return;
     }
     
-    listaCarros.forEach((carro, index) => {
+    listaArenderizar.forEach((carro, index) => {
         const carCard = document.createElement('div');
         carCard.className = 'car-card';
         
@@ -69,7 +69,7 @@ function renderCarList() {
             button.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
                 listaCarros [index].aumentarCantidad();
-                renderCarList();
+                renderCarList(listaCarros);
             });
         });
 
@@ -77,7 +77,7 @@ function renderCarList() {
             button.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
                 listaCarros [index].disminuirCantidad();
-                renderCarList();
+                renderCarList(listaCarros);
             });
         });
     
@@ -96,7 +96,7 @@ function agregarCarro(event) {
     
     listaCarros.push(nuevoCarro);
 
-    renderCarList();
+    renderCarList(listaCarros);
     
     form.reset();
     document.getElementById('cantidad').value = 1;
@@ -104,9 +104,58 @@ function agregarCarro(event) {
 
 function eliminarCarro(index) {
     listaCarros.splice(index, 1);
-    renderCarList();
+    renderCarList(listaCarros);
 }
 
 form.addEventListener('submit', agregarCarro);
 
-renderCarList();
+listaCarros.push(new Carro('Ford', 'Mustang', 2022, 'Rojo'));
+listaCarros.push(new Carro('Chevrolet', 'Camaro', 2021, 'Azul'));
+listaCarros.push(new Carro('Dodge', 'Charger', 2020, 'Negro'));
+
+function buscarCarro () {
+    busqueda = document.getElementById('searchInput').value
+    
+    if (busqueda == ''){
+        renderCarList(listaCarros);
+        return;
+    }
+
+    resultadoBuscado = listaCarros.filter(carro => carro.marca == busqueda);
+
+
+    renderCarList(resultadoBuscado);
+}
+
+function ultimosDelaLista() { 
+    renderCarList(listaCarros.slice(-1));
+}
+
+document.getElementById('searchButton').addEventListener(
+    'click', function() {
+        buscarCarro();
+    }
+)
+
+document.getElementById('searchInput').addEventListener(
+    'keypress', function(event){
+        if (event.key === 'Enter') {
+            buscarCarro();
+        }
+    }
+)
+
+document.getElementById("searchAll").addEventListener(
+    'click', function(){
+        renderCarList(listaCarros)
+    }
+)
+
+document.getElementById("searchUltimos").addEventListener(
+    'click', function (){
+        ultimosDelaLista(listaCarros)
+    }
+
+)
+
+renderCarList(listaCarros);
